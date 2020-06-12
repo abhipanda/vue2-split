@@ -6,34 +6,31 @@ var webpackBaseConfig = require('./webpack.base.config.js');
 process.env.NODE_ENV = 'production';
 
 module.exports = merge(webpackBaseConfig, {
-  entry: {
-    main: './src/index.js'
-  },
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '/dist/',
-    filename: 'vue-split-panel.min.js',
-    library: 'vue-split-panel',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  externals: {
-    vue: {
-      root: 'Vue',
-      commonjs: 'vue',
-      commonjs2: 'vue',
-      amd: 'vue'
-    }
-  },
-  plugins: [
-    // @todo
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  ]
+    entry: {
+        main: './src/index.js'
+    },
+    output: {
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: '/dist/',
+        filename: 'vue-split.min.js',
+        library: 'vue-split',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+    },
+    optimization: {
+        minimize: true
+    },
+    externals: {
+        vue: {
+            root: 'Vue',
+            commonjs: 'vue',
+            commonjs2: 'vue',
+            amd: 'vue'
+        }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"production"'
+        })
+    ]
 });

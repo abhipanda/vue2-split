@@ -6,14 +6,14 @@ var autoprefixer = require('gulp-autoprefixer');
 
 // Compile less
 gulp.task('css', function () {
-  gulp.src('../src/styles/index.less')
-    .pipe(less())
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions', 'ie > 8']
-    }))
-    .pipe(cleanCSS())
-    .pipe(rename('vue-split-panel.css'))
-    .pipe(gulp.dest('../dist/styles'));
+    return gulp.src('../src/styles/index.less')
+        .pipe(less())
+        .pipe(autoprefixer({
+            overrideBrowserslist: ['last 2 versions', 'ie > 8']
+        }))
+        .pipe(cleanCSS())
+        .pipe(rename('vue-split.css'))
+        .pipe(gulp.dest('../dist/styles'));
 });
 
-gulp.task('default', ['css']);
+gulp.task('default', gulp.series('css'));

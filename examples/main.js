@@ -1,10 +1,10 @@
 import Vue from 'vue';
-import Home from './components/vue-split-panel.vue';
+import Home from './components/vue-split.vue';
 
 Vue.config.productionTip = false;
 
 import VueSplit from '../src';
-// import '../dist/styles/vue-split-panel.css';
+// import '../dist/styles/vue-split.css';
 
 Vue.use(VueSplit);
 //Vue.component('Icon', Icon)
