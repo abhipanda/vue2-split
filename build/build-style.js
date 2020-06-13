@@ -12,7 +12,7 @@ gulp.task('css', function () {
             overrideBrowserslist: ['last 2 versions', 'ie > 8']
         }))
         .pipe(cleanCSS())
-        .pipe(rename('vue-split.css'))
+        .pipe(rename('vue2-split.css'))
         .pipe(gulp.dest('../dist/styles'));
 });
 

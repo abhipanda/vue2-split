@@ -1,4 +1,4 @@
-# vue-split
+# vue2-split
 
 - __Fast:__ No overhead or attached window event listeners, uses pure CSS for resizing.
 - __Compatible:__ Works great in IE9, and _even loads in IE8_ with polyfills. Early Firefox/Chrome/Safari/Opera supported too.
@@ -8,14 +8,14 @@
 npm:
 
 ```
-$ npm install --save vue-split
+$ npm install --save vue2-split
 ```
 
 ## Getting Started
 
 ```js
 // using ES6 modules
-import VueSplit from 'vue-split'
+import VueSplit from 'vue2-split'
 Vue.use(VueSplit)
 ```
 
@@ -157,7 +157,7 @@ methods: {
 
 ## Important Note
 
-vue-split does not set CSS beyond the minimum needed to manage the width or height of the elements.
+vue2-split does not set CSS beyond the minimum needed to manage the width or height of the elements.
 
 
 ## Browser Support
@@ -175,4 +175,4 @@ This library uses [Split.js](https://github.com/nathancahill/Split.js). These fe
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/bajaniyarohit/vue-split/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/bajaniyarohit/vue2-split/blob/master/LICENSE) file for details

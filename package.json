@@ -1,8 +1,8 @@
 {
-  "name": "vue-split",
+  "name": "vue2-split",
   "version": "1.0.0",
   "description": "Vue.js splitjs component",
-  "main": "dist/vue-split.js",
+  "main": "dist/vue2-split.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.dev.config.js",
     "build:example": "webpack --config build/webpack.dev.config.js",
@@ -15,9 +15,10 @@
     "test": "npm run lint && npm run unit",
     "prepublish": "npm run build"
   },
+  "publishConfig": { "registry": "https://registry.npmjs.org/" },
   "repository": {
     "type": "git",
-    "url": "git@github.com:abhipanda/vue-split.git"
+    "url": "git+https://git@github.com:abhipanda/vue2-split.git"
   },
   "keywords": [
     "split.js",
@@ -27,9 +28,9 @@
   "author": "abhipanda",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/abhipanda/vue-split/issues"
+    "url": "https://github.com/abhipanda/vue2-split/issues"
   },
-  "homepage": "https://github.com/abhipanda/vue-split#readme",
+  "homepage": "https://github.com/abhipanda/vue2-split#readme",
   "peerDependencies": {
     "vue": "^2.6.11"
   },

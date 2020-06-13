@@ -12,8 +12,8 @@ module.exports = merge(webpackBaseConfig, {
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/dist/',
-        filename: 'vue-split.min.js',
-        library: 'vue-split',
+        filename: 'vue2-split.min.js',
+        library: 'vue2-split',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
