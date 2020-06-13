@@ -18,7 +18,16 @@ module.exports = merge(webpackBaseConfig, {
         umdNamedDefine: true
     },
     optimization: {
-        minimize: true
+        minimize: true,
+        runtimeChunk: {
+            name: 'manifest'
+        },
+        splitChunks: {
+            cacheGroups: {
+                default: false
+            },
+            chunks: 'initial'
+        }
     },
     externals: {
         vue: {

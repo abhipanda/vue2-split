@@ -1,19 +1,19 @@
 import Split from './components/split';
 
-const VueSplit = {
-  Split,
-  SplitArea: Split.SplitArea
-}
-
-const install = function (Vue, opts = {}) {
-  Object.keys(VueSplit).forEach((key) => {
-    Vue.component(key, VueSplit[key]);
-  });
+const Vue2Split = {
+    Split,
+    SplitArea: Split.SplitArea
 };
 
-// auto install
+const install = function (Vue) {
+    Object.keys(Vue2Split).forEach((key) => {
+        Vue.component(key, Vue2Split[key]);
+    });
+};
+
 if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
+    install(window.Vue);
 }
 
-module.exports = Object.assign(VueSplit, { install }); // eslint-disable-line no-undef
+export { Vue2Split };
+export default install;

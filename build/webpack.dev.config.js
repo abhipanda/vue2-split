@@ -3,8 +3,6 @@
  */
 
 var path = require('path');
-var webpack = require('webpack');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var merge = require('webpack-merge');
 var webpackBaseConfig = require('./webpack.base.config.js');
@@ -32,7 +30,6 @@ module.exports = merge(webpackBaseConfig, {
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
         new HtmlWebpackPlugin({
             inject: true,
             filename: path.join(__dirname, '../examples/dist/index.html'),
