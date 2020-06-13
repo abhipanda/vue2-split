@@ -1,6 +1,6 @@
 {
   "name": "vue2-split",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Vue.js splitjs component",
   "main": "dist/vue2-split.js",
   "scripts": {

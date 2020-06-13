@@ -1,107 +1,112 @@
 <template>
-    <div class="split">
-        <slot></slot>
-    </div>
+  <div class="split">
+    <slot></slot>
+  </div>
 </template>
 
 <script type="text/babel">
-  import Emitter from '../../mixins/emitter';
-  import Split from 'split.js'
-  export default {
-    name: 'Split',
-    mixins: [Emitter],
-    props: {
-      direction: {
-        type: String,
-        default: 'horizontal'
-      },
-      gutterSize: {
-          type: Number,
-          default: 8
+import Split from "split.js";
+
+export default {
+  name: "Split",
+  props: {
+    direction: {
+      type: String,
+      default: "horizontal"
+    },
+    gutterSize: {
+      type: Number,
+      default: 8
+    }
+  },
+  data() {
+    return {
+      elements: [],
+      sizes: [],
+      minSizes: [],
+      instance: null
+    };
+  },
+  methods: {
+    init() {
+      this.elements = [];
+      this.sizes = [];
+      this.minSizes = [];
+      if (this.instance !== null) {
+        this.instance.destroy();
+      }
+      this.instance = null;
+      this.$slots.default.forEach(vnode => {
+        if (
+          vnode.componentOptions &&
+          vnode.componentOptions.tag === "split-area"
+        ) {
+          this.elements.push(vnode.elm);
+          if (vnode.componentInstance.size !== -1) {
+            this.sizes.push(vnode.componentInstance.size);
+          }
+          this.minSizes.push(vnode.componentInstance.minSize);
+        }
+      });
+      if (this.sizes.length === 1) {
+        this.sizes.push(100 - this.sizes[0]);
+      }
+      if (this.sizes[0] !== 100) {
+        this.instance = Split(this.elements, {
+          direction: this.direction,
+          gutterAlign: "end",
+          sizes: this.sizes,
+          minSize: this.minSizes,
+          gutterSize: this.gutterSize,
+          cursor: this.direction === "horizontal" ? "col-resize" : "row-resize",
+          onDrag: () => {
+            this.$emit("onDrag", this.instance.getSizes());
+          },
+          onDragStart: () => {
+            this.$emit("onDragStart", this.instance.getSizes());
+          },
+          onDragEnd: str => {
+            this.$emit("onDragEnd", this.instance.getSizes());
+          }
+        });
       }
     },
-    data() {
-        return {
-            elements: [],
-            sizes: [],
-            minSizes: [],
-            instance : null
-        }
+    changeAreaSize() {
+      this.sizes = [];
+      this.minSizes = [];
+      this.init();
     },
-    methods: {
-        init () {
-            let self = this;
-            if (self.instance !== null) {
-                self.instance.destroy()
-            }
-            self.instance = null
-            self.instance = Split(self.elements, {
-                direction: self.direction,
-                sizes: self.sizes,
-                minSize: self.minSizes,
-                gutterSize: self.gutterSize,
-                cursor: self.direction === 'horizontal' ? 'col-resize' : 'row-resize',
-                onDrag: function () {
-                    self.$emit('onDrag', self.instance.getSizes());
-                },
-                onDragStart: function () {
-                    self.$emit('onDragStart', self.instance.getSizes());
-                },
-                onDragEnd: function (str) {
-                    self.$emit('onDragEnd', self.instance.getSizes());
-                }
-            })
-        },
-        changeAreaSize () {
-            let self = this
-            self.sizes = []
-            self.minSizes = []
-            self.$slots.default.forEach(vnode => {
-                if (vnode.tag && vnode.tag.indexOf('SplitArea') > -1) {
-                    self.sizes.push(vnode.componentInstance.size)
-                    self.minSizes.push(vnode.componentInstance.minSize)
-                } 
-            })
-            self.init()
-        },
-        reset () {
-            this.init()
-        },
-        getSizes () {
-            return this.instance.getSizes()
-        }
+    reset() {
+      this.init();
     },
-    mounted() {
-        let self = this
-        self.elements = []
-        self.sizes = []
-        self.minSizes = []
-        self.$slots.default.forEach(vnode => {
-            if (vnode.tag && vnode.tag.indexOf('SplitArea') > -1) {
-                // vnode.componentOptions.propsData     ******** Get Prop data
-                self.elements.push(vnode.elm)
-                self.sizes.push(vnode.componentInstance.size)
-                self.minSizes.push(vnode.componentInstance.minSize)
-            } 
-        })
-        self.init()
+    getSizes() {
+      return this.instance.getSizes();
+    }
+  },
+  mounted() {
+    this.init();
+  },
+  watch: {
+    direction(val) {
+      this.init();
     },
-    watch: {
-        'direction' (val) {
-            this.init()
-        },
-        'gutterSize' (val) {
-            this.init()
-        }
-    },
-  };
+    gutterSize(val) {
+      this.init();
+    }
+  },
+  beforeDestroy() {
+    if (this.instance !== null) {
+      this.instance.destroy();
+    }
+  }
+};
 </script>
 
  <style>
-  .split {
+.split {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
@@ -114,13 +119,14 @@
 }
 .gutter.gutter-horizontal {
   cursor: col-resize;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
 }
 .gutter.gutter-vertical {
   cursor: row-resize;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
 }
-.split.split-horizontal, .gutter.gutter-horizontal {
+.split.split-horizontal,
+.gutter.gutter-horizontal {
   height: 100%;
   float: left;
 }

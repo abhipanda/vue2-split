@@ -20,16 +20,6 @@ module.exports = merge(webpackBaseConfig, {
     },
     optimization: {
         minimize: false,
-        removeEmptyChunks: true,
-        runtimeChunk: {
-            name: 'manifest'
-        },
-        splitChunks: {
-            cacheGroups: {
-                default: false
-            },
-            chunks: 'initial'
-        }
     },
     externals: {
         vue: {

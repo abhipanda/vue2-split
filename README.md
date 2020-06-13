@@ -15,8 +15,8 @@ $ npm install --save vue2-split
 
 ```js
 // using ES6 modules
-import VueSplit from 'vue2-split'
-Vue.use(VueSplit)
+import Vue2Split from 'vue2-split'
+Vue.use(Vue2Split)
 ```
 
 ## Usage Examples
@@ -24,69 +24,69 @@ Vue.use(VueSplit)
 A split with two elements, starting at 25% and 75% wide.
 
 ```html
-<Split style="height: 500px;">
-    <SplitArea :size="25">
+<split style="height: 500px;">
+    <split-area :size="25">
         panel left
-    </SplitArea>
-    <SplitArea :size="75">
+    </split-area>
+    <split-area>
         panel right
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 
 A split with three elements, starting with even widths with 100px, 100px and 300px minimum widths, respectively.
 
 ```html
-<Split style="height: 500px;">
-    <SplitArea :size="33" :minSize="100">
+<split style="height: 500px;">
+    <split-area :size="33" :minSize="100">
         panel left
-    </SplitArea>
-    <SplitArea :size="33" :minSize="100">
+    </split-area>
+    <split-area :size="33" :minSize="100">
         panel center
-    </SplitArea>
-    <SplitArea :size="33" :minSize="300">
+    </split-area>
+    <split-area :size="33" :minSize="300">
         panel right
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 
 A vertical split with two elements.
 
 ```html
-<Split style="height: 500px;" :direction="vertical">
-    <SplitArea>
+<split style="height: 500px;" :direction="vertical">
+    <split-area>
         panel left
-    </SplitArea>
-    <SplitArea>
+    </split-area>
+    <split-area>
         panel center
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 
 A Setting the gutter size to 20px.
 
 ```html
-<Split style="height: 500px;" :gutterSize="20">
-    <SplitArea>
+<split style="height: 500px;" :gutterSize="20">
+    <split-area>
         panel left
-    </SplitArea>
-    <SplitArea>
+    </split-area>
+    <split-area>
         panel center
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 
 Callbacks that can be added on drag (fired continously), drag start and drag end. If doing more than basic operations in `onDrag`, add a debounce function to rate limit the callback.
 
 ```html
-<Split style="height: 500px;" @onDragEnd="onDragEnd" @onDragStart="onDragStart" onDrag="onDrag">
-    <SplitArea>
+<split style="height: 500px;" @onDragEnd="onDragEnd" @onDragStart="onDragStart" onDrag="onDrag">
+    <split-area>
         panel left
-    </SplitArea>
-    <SplitArea>
+    </split-area>
+    <split-area>
         panel center
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 ```
 methods: {
@@ -104,14 +104,14 @@ methods: {
 A Reset the panel and get new sizes
 
 ```html
-<Split style="height: 500px;" ref="mySplit">
-    <SplitArea>
+<split style="height: 500px;" ref="mySplit">
+    <split-area>
         panel left
-    </SplitArea>
-    <SplitArea>
+    </split-area>
+    <split-area>
         panel center
-    </SplitArea>
-</Split>
+    </split-area>
+</split>
 ```
 ```
 methods: {
@@ -126,14 +126,14 @@ methods: {
 
 ## API
 
-#### Split props
+#### split props
 
 | Property | Type | Default | Description |
 |---|---|---|---|
 | `gutterSize` | Number | 10 | Gutter size in pixels. |
 | `direction` | String | 'horizontal' | Direction to split: horizontal or vertical. |
 
-#### Split events
+#### split events
 
 | Event Name | Description | Return Value
 |---|---|---|
@@ -141,13 +141,13 @@ methods: {
 | `onDragStart` | Callback on drag start. | new size |
 | `onDragEnd` | Callback on drag end. | new size |
 
-#### Split methods
+#### split methods
 
 | Method Name | Description | Arguments
 |---|---|---|
 | `reset` | Reset panel. | none |
 
-#### SplitArea props
+#### split-area props
 
 | Property | Type | Default | Description |
 |---|---|---|---|
@@ -162,7 +162,7 @@ vue2-split does not set CSS beyond the minimum needed to manage the width or hei
 
 ## Browser Support
 
-This library uses [Split.js](https://github.com/nathancahill/Split.js). These features are supported in the following browsers:
+This library uses [split.js](https://github.com/nathancahill/split.js). These features are supported in the following browsers:
 
 | <img src="http://i.imgur.com/dJC1GUv.png" width="48px" height="48px" alt="Chrome logo"> | <img src="http://i.imgur.com/o1m5RcQ.png" width="48px" height="48px" alt="Firefox logo"> | <img src="http://i.imgur.com/8h3iz5H.png" width="48px" height="48px" alt="Internet Explorer logo"> | <img src="http://i.imgur.com/iQV4nmJ.png" width="48px" height="48px" alt="Opera logo"> | <img src="http://i.imgur.com/j3tgNKJ.png" width="48px" height="48px" alt="Safari logo"> | [<img src="http://i.imgur.com/70as3qf.png" height="48px" alt="BrowserStack logo">](http://browserstack.com/) |
 |:---:|:---:|:---:|:---:|:---:|:----|
@@ -175,4 +175,4 @@ This library uses [Split.js](https://github.com/nathancahill/Split.js). These fe
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/bajaniyarohit/vue2-split/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/abhipanda/vue2-split/blob/master/LICENSE) file for details
