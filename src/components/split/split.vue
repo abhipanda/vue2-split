@@ -42,10 +42,12 @@ export default {
           vnode.componentOptions.tag === "split-area"
         ) {
           this.elements.push(vnode.elm);
-          if (vnode.componentInstance.size !== -1) {
+          if (vnode.componentInstance && vnode.componentInstance.size !== -1) {
             this.sizes.push(vnode.componentInstance.size);
           }
-          this.minSizes.push(vnode.componentInstance.minSize);
+           if (vnode.componentInstance) {
+            this.minSizes.push(vnode.componentInstance.minSize);
+           }
         }
       });
       if (this.sizes.length === 1) {
